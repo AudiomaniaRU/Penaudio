@@ -1,0 +1,24 @@
+backend:
+  name: git-gateway      # Используем Netlify для авторизации
+  branch: main           # Твоя главная ветка (может быть 'master')
+
+media_folder: "images"   # Куда грузятся картинки
+public_folder: "images"  # Путь к картинкам на сайте
+
+collections:
+  - name: "site"         # Название коллекции
+    label: "Сайт"        # Как видно в меню
+    files:
+      - name: "home"
+        label: "Главная страница"
+        file: "index.html"
+        fields:
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Текст", name: "body", widget: "markdown" }
+      
+      - name: "about"
+        label: "Страница О нас"
+        file: "about.html"
+        fields:
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Текст", name: "body", widget: "markdown" }
