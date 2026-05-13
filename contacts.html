@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Контакты Penaudio. Свяжитесь с нами для консультации, заказа или сотрудничества.">
+    <title>Контакты — Penaudio</title>
+    
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Стили -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="header__inner">
+            <a href="index.html" class="logo">Pen<span>audio</span></a>
+            <nav class="nav">
+                <a href="index.html" class="nav__link">Главная</a>
+                <a href="catalog.html" class="nav__link">Каталог</a>
+                <a href="about.html" class="nav__link">О бренде</a>
+                <a href="contacts.html" class="nav__link active">Контакты</a>
+            </nav>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav__link">Главная</a>
+        <a href="catalog.html" class="nav__link">Каталог</a>
+        <a href="about.html" class="nav__link">О бренде</a>
+        <a href="contacts.html" class="nav__link active">Контакты</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <section class="section" id="contacts">
+            <div class="section__inner">
+                <div class="section__header reveal">
+                    <span class="section__label">Связаться</span>
+                    <h1 class="section__title">Контакты</h1>
+                    <div class="section__divider"></div>
+                </div>
+
+                <div class="contacts-grid">
+                    <!-- Контактная информация -->
+                    <div class="contacts-info reveal">
+                        <h3>
+                            <!-- ЗАМЕНИТЕ: Заголовок -->
+                            Свяжитесь с нами
+                        </h3>
+                        <p>
+                            <!-- ЗАМЕНИТЕ: Вводный текст -->
+                            Мы готовы ответить на ваши вопросы, помочь с выбором акустической системы 
+                            или обсудить условия сотрудничества.
+                        </p>
+                        <ul class="contacts-details">
+                            <li>
+                                <span class="contacts-details__label">Адрес шоурума</span>
+                                <span class="contacts-details__value">
+                                    <!-- ЗАМЕНИТЕ -->
+                                    г. Хельсинки, ул. Мannerheimintie 12, Финляндия
+                                </span>
+                            </li>
+                            <li>
+                                <span class="contacts-details__label">Телефон</span>
+                                <span class="contacts-details__value">
+                                    <a href="tel:+358000000000">
+                                        <!-- ЗАМЕНИТЕ -->
+                                        +358 (00) 000-0000
+                                    </a>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="contacts-details__label">Email</span>
+                                <span class="contacts-details__value">
+                                    <a href="mailto:info@penaudio.com">
+                                        <!-- ЗАМЕНИТЕ -->
+                                        info@penaudio.com
+                                    </a>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="contacts-details__label">Режим работы</span>
+                                <span class="contacts-details__value">
+                                    <!-- ЗАМЕНИТЕ -->
+                                    Пн–Пт: 10:00–18:00 | Сб: 11:00–16:00
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Форма обратной связи -->
+                    <form class="contacts-form reveal" id="contactForm" action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Имя</label>
+                            <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea id="message" name="message" placeholder="Расскажите, чем мы можем помочь..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <p class="footer__copy">© 2026 Penaudio. Все права защищены.</p>
+            <div class="footer__links">
+                <a href="index.html">Главная</a>
+                <a href="catalog.html">Каталог</a>
+                <a href="about.html">О бренде</a>
+                <a href="contacts.html">Контакты</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Скрипты -->
+    <script src="js/script.js" defer></script>
+</body>
+</html>
