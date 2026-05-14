@@ -1,8 +1,66 @@
 backend:
-  name: test-repo
+  name: github
+  repo: AudiomaniaRU/Penaudio  # ← ЗАМЕНИТЕ НА СВОЙ: никнейм/имя-репозитория
+  branch: main
 
 media_folder: "images"
 public_folder: "images"
 
 collections:
-  # ... остальная часть конфига без изменений
+  - name: "site_settings"
+    label: "Настройки сайта"
+    files:
+      - name: "home"
+        label: "Главная страница"
+        file: "content/site_settings/home.json"
+        fields:
+          - { label: "Подзаголовок", name: "subtitle", widget: "string" }
+          - { label: "Заголовок (h1)", name: "title", widget: "string" }
+          - { label: "Описание", name: "description", widget: "text" }
+          - { label: "Текст кнопки", name: "cta_text", widget: "string" }
+          - { label: "Ссылка кнопки", name: "cta_link", widget: "string" }
+      
+      - name: "about"
+        label: "О бренде"
+        file: "content/site_settings/about.json"
+        fields:
+          - { label: "Подзаголовок", name: "subtitle", widget: "string" }
+          - { label: "Заголовок страницы", name: "title", widget: "string" }
+          - { label: "Текст заголовка (h3)", name: "heading", widget: "string" }
+          - { label: "Текст (абзац 1)", name: "text1", widget: "text" }
+          - { label: "Текст (абзац 2)", name: "text2", widget: "text" }
+          - label: "Статистика"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Число", name: "number", widget: "string" }
+              - { label: "Подпись", name: "label", widget: "string" }
+      
+      - name: "contacts"
+        label: "Контакты"
+        file: "content/site_settings/contacts.json"
+        fields:
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Вводный текст", name: "intro", widget: "text" }
+          - { label: "Адрес", name: "address", widget: "string" }
+          - { label: "Телефон", name: "phone", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Режим работы", name: "hours", widget: "string" }
+
+  - name: "catalog"
+    label: "Каталог"
+    files:
+      - name: "products"
+        label: "Все модели"
+        file: "content/catalog/index.json"
+        fields:
+          - label: "Список товаров"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Название", name: "title", widget: "string" }
+              - { label: "Категория", name: "category", widget: "select", options: ["Напольная акустика", "Полочная акустика", "Центральный канал", "Сабвуфер", "Аксессуары"] }
+              - { label: "Описание", name: "description", widget: "text" }
+              - { label: "Цена", name: "price", widget: "string" }
+              - { label: "Изображение", name: "image", widget: "image", required: false }
+              - { label: "Порядок", name: "order", widget: "number", default: 0 }
