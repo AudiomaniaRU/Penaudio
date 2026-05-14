@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: AudiomaniaRU/Penaudio  # ← ЗАМЕНИТЕ НА СВОЙ: никнейм/имя-репозитория
   branch: main
 
 media_folder: "images"
@@ -8,8 +9,6 @@ public_folder: "images"
 collections:
   - name: "site_settings"
     label: "Настройки сайта"
-    editor:
-      preview: false
     files:
       - name: "home"
         label: "Главная страница"
