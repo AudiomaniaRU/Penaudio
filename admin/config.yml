@@ -5,7 +5,6 @@ backend:
 media_folder: "images"
 public_folder: "images"
 
-# Глобальные настройки сайта (тексты, контакты, статистика)
 collections:
   - name: "site_settings"
     label: "Настройки сайта"
@@ -16,19 +15,19 @@ collections:
         label: "Главная страница"
         file: "content/site_settings/home.json"
         fields:
-          - { label: "Подзаголовок (subtitle)", name: "subtitle", widget: "string", default: "Finnish Acoustics Since 1999" }
-          - { label: "Заголовок (h1)", name: "title", widget: "string", default: "Звук, рождённый в сердце Финляндии" }
-          - { label: "Описание", name: "description", widget: "text", default: "Премиальная акустика ручной работы..." }
-          - { label: "Текст кнопки", name: "cta_text", widget: "string", default: "Смотреть каталог" }
-          - { label: "Ссылка кнопки", name: "cta_link", widget: "string", default: "catalog.html" }
+          - { label: "Подзаголовок", name: "subtitle", widget: "string" }
+          - { label: "Заголовок (h1)", name: "title", widget: "string" }
+          - { label: "Описание", name: "description", widget: "text" }
+          - { label: "Текст кнопки", name: "cta_text", widget: "string" }
+          - { label: "Ссылка кнопки", name: "cta_link", widget: "string" }
       
       - name: "about"
-        label: "Страница «О бренде»"
+        label: "О бренде"
         file: "content/site_settings/about.json"
         fields:
-          - { label: "Подзаголовок", name: "subtitle", widget: "string", default: "История" }
-          - { label: "Заголовок", name: "title", widget: "string", default: "О бренде" }
-          - { label: "Текст заголовка", name: "heading", widget: "string", default: "Финское мастерство, мировое признание" }
+          - { label: "Подзаголовок", name: "subtitle", widget: "string" }
+          - { label: "Заголовок страницы", name: "title", widget: "string" }
+          - { label: "Текст заголовка (h3)", name: "heading", widget: "string" }
           - { label: "Текст (абзац 1)", name: "text1", widget: "text" }
           - { label: "Текст (абзац 2)", name: "text2", widget: "text" }
           - label: "Статистика"
@@ -39,7 +38,7 @@ collections:
               - { label: "Подпись", name: "label", widget: "string" }
       
       - name: "contacts"
-        label: "Страница «Контакты»"
+        label: "Контакты"
         file: "content/site_settings/contacts.json"
         fields:
           - { label: "Заголовок", name: "title", widget: "string" }
@@ -49,18 +48,20 @@ collections:
           - { label: "Email", name: "email", widget: "string" }
           - { label: "Режим работы", name: "hours", widget: "string" }
 
-  # Каталог товаров
   - name: "catalog"
     label: "Каталог"
-    folder: "content/catalog"
-    create: true
-    slug: "{{slug}}"
-    editor:
-      preview: false
-    fields:
-      - { label: "Название модели", name: "title", widget: "string" }
-      - { label: "Категория", name: "category", widget: "select", options: ["Напольная акустика", "Полочная акустика", "Центральный канал", "Сабвуфер", "Аксессуары"] }
-      - { label: "Описание", name: "description", widget: "text" }
-      - { label: "Цена", name: "price", widget: "string", default: "По запросу" }
-      - { label: "Изображение", name: "image", widget: "image", required: false }
-      - { label: "Порядок сортировки", name: "order", widget: "number", default: 0, hint: "Меньшее число = выше в списке" }
+    files:
+      - name: "products"
+        label: "Все модели"
+        file: "content/catalog/index.json"
+        fields:
+          - label: "Список товаров"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Название", name: "title", widget: "string" }
+              - { label: "Категория", name: "category", widget: "select", options: ["Напольная акустика", "Полочная акустика", "Центральный канал", "Сабвуфер", "Аксессуары"] }
+              - { label: "Описание", name: "description", widget: "text" }
+              - { label: "Цена", name: "price", widget: "string" }
+              - { label: "Изображение", name: "image", widget: "image", required: false }
+              - { label: "Порядок", name: "order", widget: "number", default: 0 }
