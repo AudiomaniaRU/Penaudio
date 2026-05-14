@@ -1,24 +1,66 @@
 backend:
-  name: git-gateway      # Используем Netlify для авторизации
-  branch: main           # Твоя главная ветка (может быть 'master')
+  name: git-gateway
+  branch: main
 
-media_folder: "images"   # Куда грузятся картинки
-public_folder: "images"  # Путь к картинкам на сайте
+media_folder: "images"
+public_folder: "images"
 
+# Глобальные настройки сайта (тексты, контакты, статистика)
 collections:
-  - name: "site"         # Название коллекции
-    label: "Сайт"        # Как видно в меню
+  - name: "site_settings"
+    label: "Настройки сайта"
+    editor:
+      preview: false
     files:
       - name: "home"
         label: "Главная страница"
-        file: "index.html"
+        file: "content/site_settings/home.json"
         fields:
-          - { label: "Заголовок", name: "title", widget: "string" }
-          - { label: "Текст", name: "body", widget: "markdown" }
+          - { label: "Подзаголовок (subtitle)", name: "subtitle", widget: "string", default: "Finnish Acoustics Since 1999" }
+          - { label: "Заголовок (h1)", name: "title", widget: "string", default: "Звук, рождённый в сердце Финляндии" }
+          - { label: "Описание", name: "description", widget: "text", default: "Премиальная акустика ручной работы..." }
+          - { label: "Текст кнопки", name: "cta_text", widget: "string", default: "Смотреть каталог" }
+          - { label: "Ссылка кнопки", name: "cta_link", widget: "string", default: "catalog.html" }
       
       - name: "about"
-        label: "Страница О нас"
-        file: "about.html"
+        label: "Страница «О бренде»"
+        file: "content/site_settings/about.json"
+        fields:
+          - { label: "Подзаголовок", name: "subtitle", widget: "string", default: "История" }
+          - { label: "Заголовок", name: "title", widget: "string", default: "О бренде" }
+          - { label: "Текст заголовка", name: "heading", widget: "string", default: "Финское мастерство, мировое признание" }
+          - { label: "Текст (абзац 1)", name: "text1", widget: "text" }
+          - { label: "Текст (абзац 2)", name: "text2", widget: "text" }
+          - label: "Статистика"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Число", name: "number", widget: "string" }
+              - { label: "Подпись", name: "label", widget: "string" }
+      
+      - name: "contacts"
+        label: "Страница «Контакты»"
+        file: "content/site_settings/contacts.json"
         fields:
           - { label: "Заголовок", name: "title", widget: "string" }
-          - { label: "Текст", name: "body", widget: "markdown" }
+          - { label: "Вводный текст", name: "intro", widget: "text" }
+          - { label: "Адрес", name: "address", widget: "string" }
+          - { label: "Телефон", name: "phone", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Режим работы", name: "hours", widget: "string" }
+
+  # Каталог товаров
+  - name: "catalog"
+    label: "Каталог"
+    folder: "content/catalog"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Название модели", name: "title", widget: "string" }
+      - { label: "Категория", name: "category", widget: "select", options: ["Напольная акустика", "Полочная акустика", "Центральный канал", "Сабвуфер", "Аксессуары"] }
+      - { label: "Описание", name: "description", widget: "text" }
+      - { label: "Цена", name: "price", widget: "string", default: "По запросу" }
+      - { label: "Изображение", name: "image", widget: "image", required: false }
+      - { label: "Порядок сортировки", name: "order", widget: "number", default: 0, hint: "Меньшее число = выше в списке" }
