@@ -98,13 +98,20 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // =========================================
-// 6. ОБРАБОТКА ФОРМЫ КОНТАКТОВ
+// 6. ОТПРАВКА ФОРМЫ В GOOGLE ТАБЛИЦЫ
 // =========================================
+
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
+        
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        
+        // Вставьте сюда ваш URL из Apps Script (Шаг 2)
+        const SCRIPT_URL = 'https://script.google.com/macros/s/ВАШ_СКРИПТ_ЗДЕСЬ/exec';
         
         const formData = {
             name: document.getElementById('name').value.trim(),
@@ -112,21 +119,31 @@ if (contactForm) {
             message: document.getElementById('message').value.trim()
         };
         
-        // Здесь в будущем можно добавить реальную отправку на сервер через fetch()
-        console.log('Форма отправлена:', formData);
-        
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        
-        submitBtn.textContent = 'Отправлено ✓';
-        submitBtn.style.background = '#2a7d4f';
+        submitBtn.textContent = 'Отправка...';
         submitBtn.disabled = true;
         
-        setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.style.background = '';
-            submitBtn.disabled = false;
+        try {
+            await fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Обходит ограничения CORS Google
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(formData)
+            });
+            
+            submitBtn.textContent = 'Отправлено ✓';
+            submitBtn.style.background = '#2a7d4f';
             contactForm.reset();
-        }, 3000);
+            
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = '';
+                submitBtn.disabled = false;
+            }, 4000);
+        } catch (err) {
+            console.error('Ошибка отправки:', err);
+            submitBtn.textContent = 'Ошибка. Попробуйте снова';
+            submitBtn.disabled = false;
+            setTimeout(() => submitBtn.textContent = originalText, 3000);
+        }
     });
 }
