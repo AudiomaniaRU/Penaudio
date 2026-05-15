@@ -110,7 +110,7 @@ if (contactForm) {
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
         
-        // Вставьте сюда ваш URL из Apps Script (Шаг 2)
+        // ВСТАВЬТЕ СЮДА ВАШ URL (обязательно заканчивается на /exec)
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx08qRL-jfIDB6MMA6-oPAMNMALaemvoiNDx2UEJtxL4o0HGJoBP910t36-LDF3pcFv/exec';
         
         const formData = {
@@ -123,11 +123,10 @@ if (contactForm) {
         submitBtn.disabled = true;
         
         try {
+            // Отправляем как обычную HTML-форму. Это обходит CORS-префлайт.
             await fetch(SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors', // Обходит ограничения CORS Google
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify(formData)
+                body: new URLSearchParams(formData)
             });
             
             submitBtn.textContent = 'Отправлено ✓';
@@ -140,8 +139,8 @@ if (contactForm) {
                 submitBtn.disabled = false;
             }, 4000);
         } catch (err) {
-            console.error('Ошибка отправки:', err);
-            submitBtn.textContent = 'Ошибка. Попробуйте снова';
+            console.error('Ошибка:', err);
+            submitBtn.textContent = 'Ошибка сети';
             submitBtn.disabled = false;
             setTimeout(() => submitBtn.textContent = originalText, 3000);
         }
