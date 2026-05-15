@@ -1,7 +1,9 @@
 backend:
   name: github
-  repo: AudiomaniaRU/Penaudio  # ← ЗАМЕНИТЕ НА СВОЙ: никнейм/имя-репозитория
+  repo: AudiomaniaRU/Penaudio
   branch: main
+  base_url: https://decap-cms-github-oauth.vercel.app
+  auth_endpoint: /auth
 
 media_folder: "images"
 public_folder: "images"
