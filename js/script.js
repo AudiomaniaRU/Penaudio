@@ -111,7 +111,7 @@ if (contactForm) {
         const originalText = submitBtn.textContent;
         
         // Вставьте сюда ваш URL из Apps Script (Шаг 2)
-        const SCRIPT_URL = 'https://script.google.com/macros/s/ВАШ_СКРИПТ_ЗДЕСЬ/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx08qRL-jfIDB6MMA6-oPAMNMALaemvoiNDx2UEJtxL4o0HGJoBP910t36-LDF3pcFv/exec';
         
         const formData = {
             name: document.getElementById('name').value.trim(),
